@@ -1,7 +1,7 @@
 news_files={
       "newsafr.json": "utf-8",
       "newscy.json": "koi8-r",
-      # "newsfr.json": "iso8859_5", #не разобрался какая у файла кодировка
+      # "newsfr.json": "iso8859_5", #не разобрался какая у файла кодировка ?
       # "newsit.json": "cp1251",  #у этого файла немного другой формат 
 }
 
@@ -12,7 +12,8 @@ import json
 def news_country(file_name, code_page):
 	with open(file_name, encoding=code_page) as file:
 		data = json.load(file)
-		return data['rss']['channel']['title']
+		country = data['rss']['channel']['title']
+		return country
 
 #из всех заголовков и новостей сделать один список news_list из слов длиннее 6 символов
 def news_list(file_name, code_page):
