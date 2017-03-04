@@ -12,8 +12,8 @@ import json
 def news_country(file_name, code_page):
 	with open(file_name, encoding=code_page) as file:
 		data = json.load(file)
-		country = data['rss']['channel']['title']
-		return country
+		news_country = data['rss']['channel']['title']
+		return news_country
 
 #из всех заголовков и новостей сделать один список news_list из слов длиннее 6 символов
 def news_list(file_name, code_page):
