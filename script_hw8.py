@@ -1,8 +1,8 @@
 news_files={
       "newsafr.json": "utf-8",
       "newscy.json": "koi8-r",
-      # "newsfr.json": "iso8859_5", #не разобрался какая у файла кодировка ?
-      # "newsit.json": "cp1251",  #у этого файла немного другой формат 
+      "newsfr.json": "iso8859_5",
+      "newsit.json": "cp1251",  #у этого файла немного другой формат 
 }
 
 
@@ -22,8 +22,12 @@ def news_list(file_name, code_page):
 		news_list_all = [] #создаю пустой список для всех слов новостей
 		news_list = [] #создаю пустой список для слов более 6 символов
 		for item in data['rss']['channel']['item']:
-			title = item['title']['__cdata']
-			description = item['description']['__cdata']
+			if type(item['title']) == dict:
+				title = item['title']['__cdata']
+				description = item['description']['__cdata']
+			if type(item['title']) == str:
+				title = item['title']
+				description = item['description']
 			title = title.split()
 			description = description.split()
 			news_list_all += title #на каждой итерации добавляю в список слова из title
